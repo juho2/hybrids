@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 pd.options.mode.chained_assignment = None
 
-def get_data(vehicle_url, city_code_url):
+def get_data(vehicle_url, city_code_url, db):
     # Load vehicle registration data
     print('Getting vehicle data..')
     data = pd.read_csv(vehicle_url, sep=';', encoding='latin-1', low_memory=False)
@@ -93,7 +93,6 @@ def get_data(vehicle_url, city_code_url):
         print('No imputation')
         
     # Result to db
-    db_file = 'trafi.db'
     con = sqlite3.connect(db_file)
     df.to_sql('hybrids', con, if_exists='replace', index=False)
     con.close()
@@ -103,5 +102,6 @@ def get_data(vehicle_url, city_code_url):
 if __name__ == '__main__':
     cars = r'http://trafiopendata.97.fi/opendata/180117_tieliikenne_5_1.zip'
     city_codes = r'https://www.tilastokeskus.fi/meta/luokitukset/kunta/001-2018/index.html'
-    get_data(cars, city_codes)
+	db = 'static/trafi.db'
+    get_data(cars, city_codes, db)
     

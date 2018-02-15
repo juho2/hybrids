@@ -30,14 +30,14 @@ class HybridsByCityAndYear(Resource):
         
 @app.route('/')
 def health():
-    html = """Service up. Fetch data on hybrid vehicles registered in Finland by
-    <a href="/hybrids/utsjoki">city</a> and registration
-    <a href="/hybrids/helsinki/2005"> year</a> """
+    html = """Service up. Fetch data on hybrid vehicles registered 
+	in Finland by <a href="/utsjoki">city</a> and registration 
+    <a href="/helsinki/2005">year</a>."""
     return(html)
 
 
-api.add_resource(HybridsByCity, '/hybrids/<string:city>')
-api.add_resource(HybridsByCityAndYear, '/hybrids/<string:city>/<string:year>')
+api.add_resource(HybridsByCity, '/<string:city>')
+api.add_resource(HybridsByCityAndYear, '/<string:city>/<string:year>')
 
 if __name__ == '__main__':
      app.run(port=8080)
