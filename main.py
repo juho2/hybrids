@@ -30,7 +30,7 @@ class HybridsByCityAndYear(Resource):
         
 @app.route('/')
 def health():
-    html = """Service up. Find hybrids registered in Finland by
+    html = """Service up. Fetch data on hybrid vehicles registered in Finland by
     <a href="/hybrids/utsjoki">city</a> and registration
     <a href="/hybrids/helsinki/2005"> year</a> """
     return(html)
